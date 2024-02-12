@@ -23,7 +23,7 @@ int IsQueueEmpty( queue*);
 void AddToQueue( queue*, Node*);
 struct Node* DeQueue( queue*);
 
-void traverse( Node* ptr);
+void displayNode( Node* ptr);
 
 void printHead( queue*);
 void printTail( queue*);
@@ -34,5 +34,3 @@ struct Node* CreateNode();
 // Adding it all together to fill a function with randomly generatted users
 
 int fillQueue(queue*, int );
-
-void displayQueue(queue*);

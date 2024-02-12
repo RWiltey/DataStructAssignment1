@@ -39,7 +39,7 @@ void AddToQueue( queue* fifo,  Node* ptr) {
 	fifo->pHead = fifo->pHead->next; // Make next item new'head'
 		return(pTemp); // Return old 'head'
 }
-void traverse( Node* ptr) {
+void displayNode( Node* ptr) {
 	printf("POPPED NODE: level is:%d, name is: %s, team is:%s\n", ptr->data.level, ptr->data.name, ptr->data.team);
 	//ptr = ptr->next; //moving to next node
 }
