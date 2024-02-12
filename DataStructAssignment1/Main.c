@@ -7,52 +7,21 @@
 #include <time.h>
 
 
-int main(void) {
+int main(int argc, char* argv[]) {
+	if (argc != 1) {
+		printf("Usage: %s <number_of_nodes>\n", argv[0]);
+		return EXIT_FAILURE;
+	}
+	int numNodes = atoi(argv[1]);
 	srand(time(NULL));
 
-	struct queue* fifo;
-	fifo = (struct queue*)malloc(sizeof(struct queue));
-	struct Node* first;
-	first = (struct Node*)malloc(sizeof(struct Node)); //allocating memory to first node
-	if (first == NULL)
-	{
-		printf("\n Memory not available");
-		return 1;
-	}
-	first->data.level = 5;
-	strncpy(first->data.name, "ryan", 10);
-	strncpy(first->data.team, "red", 10);
-
-	first->next = NULL;
-	struct Node* second = CreateNode();
-	
-
-	struct Node* third = CreateNode();
+	 queue* fifo;
+	fifo = (queue*)malloc(sizeof(queue));
 	
 	InitQueue(fifo);
-	IsQueueEmpty(fifo);
-
-	AddToQueue(fifo, first);
-	printTail(fifo);
-	AddToQueue(fifo,second);
-	printTail(fifo);
-	AddToQueue(fifo,third);
-	printTail(fifo);
+	fillQueue(fifo, numNodes);
 	printHead(fifo);
-
-
-	struct Node* dequeued = DeQueue(fifo);
-	traverse(dequeued);
-	printHead(fifo);
-
-	struct Node* secondd = DeQueue(fifo);
-	traverse(secondd);
-
-	struct Node* thirdd = DeQueue(fifo);
-	traverse(thirdd);
-
-	DeQueue(fifo);
-	IsQueueEmpty(fifo);
-
+	printTail(fifo);
+	
 	return 0;
 }

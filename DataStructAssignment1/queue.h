@@ -2,10 +2,10 @@
 #define MAXNAME 10
 
 
-struct queue {
+typedef struct queue {
 	struct Node* pHead;
 	struct Node* pTail;
-};
+}queue;
 
 struct user {
 	char name[MAXNAME];
@@ -13,20 +13,26 @@ struct user {
 	char team[MAXNAME];
 };
 
-struct Node {
+typedef struct Node {
 	 struct user data;
 	struct Node* next;
-};
+}Node;
 
-void InitQueue(struct queue* );
-int IsQueueEmpty(struct queue*);
-void AddToQueue(struct queue*, struct Node*);
-struct Node* DeQueue(struct queue*);
+void InitQueue( queue* );
+int IsQueueEmpty( queue*);
+void AddToQueue( queue*, Node*);
+struct Node* DeQueue( queue*);
 
-void traverse(struct Node* ptr);
+void traverse( Node* ptr);
 
-void printHead(struct queue*);
-void printTail(struct queue*);
+void printHead( queue*);
+void printTail( queue*);
 
 // creating a node within a function
 struct Node* CreateNode();
+
+// Adding it all together to fill a function with randomly generatted users
+
+int fillQueue(queue*, int );
+
+void displayQueue(queue*);

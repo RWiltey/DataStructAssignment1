@@ -7,7 +7,7 @@
 
 
 //static struct Node* pHead, * pTail;
-void InitQueue(struct queue* fifo) {
+void InitQueue( queue* fifo) {
 	fifo->pHead = NULL;
 	fifo->pTail = NULL;
 }
@@ -19,7 +19,7 @@ int IsQueueEmpty(struct queue* fifo) {
 	}
 }
 
-void AddToQueue(struct queue* fifo, struct Node* ptr) {
+void AddToQueue( queue* fifo,  Node* ptr) {
 	if (fifo->pHead == NULL) {
 		fifo->pHead = fifo->pTail = ptr; // First item 'head'
 	}
@@ -29,9 +29,8 @@ void AddToQueue(struct queue* fifo, struct Node* ptr) {
 	ptr->next = NULL; // Last item pts to NULL
 	fifo->pTail = ptr; // Make this last input
 }
-struct Node* DeQueue(struct queue* fifo)
-{
-	struct Node* pTemp;
+ Node* DeQueue( queue* fifo){
+	 Node* pTemp;
 	if (fifo->pHead == NULL) {
 		printf("nothing here\n");
 		return(NULL);
@@ -40,23 +39,23 @@ struct Node* DeQueue(struct queue* fifo)
 	fifo->pHead = fifo->pHead->next; // Make next item new'head'
 		return(pTemp); // Return old 'head'
 }
-void traverse(struct Node* ptr) {
+void traverse( Node* ptr) {
 	printf("POPPED NODE: level is:%d, name is: %s, team is:%s\n", ptr->data.level, ptr->data.name, ptr->data.team);
 	//ptr = ptr->next; //moving to next node
 }
 
-void printHead(struct queue* fifo) {
+void printHead( queue* fifo) {
 	printf("HEAD: level is:%d, name is: %s, team is:%s\n", fifo->pHead->data.level, fifo->pHead->data.name, fifo->pHead->data.team);
 }
 
-void printTail(struct queue* fifo) {
+void printTail( queue* fifo) {
 	printf("TAIL: level is:%d, name is: %s, team is:%s\n", fifo->pTail->data.level, fifo->pTail->data.name, fifo->pTail->data.team);
 }
 
-struct Node* CreateNode() {
+Node* CreateNode() {
 	// this will create a node with a random user
-	struct Node* newNode;
-	newNode = (struct Node*)malloc(sizeof(struct Node));
+	 Node* newNode;
+	newNode = (Node*)malloc(sizeof( Node));
 
 	char randName[11];
 	createRandomName(randName, 10);
@@ -75,3 +74,21 @@ struct Node* CreateNode() {
 	return newNode;
 
 }
+
+int fillQueue(queue* fifo, int numOfUsers) {
+	int numNodes = numOfUsers;
+	Node* newNode;
+	newNode = (Node*)malloc(sizeof(Node));
+	if (newNode == NULL) {
+		printf("cant allocate memory");
+		return 1;
+	}
+	while (numNodes >= 0) {
+		newNode = CreateNode();
+		AddToQueue(fifo, newNode);
+		numNodes--;
+	}
+	return 0;
+}
+
+
